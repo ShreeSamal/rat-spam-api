@@ -8,8 +8,8 @@ from nltk.stem.porter import PorterStemmer
 app = Flask(__name__)
 
 # Load the vectorizer and model
-vectorizer = pickle.load(open("assets/dumps/vectorizer.pkl", "rb"))
-model = pickle.load(open("assets/dumps/model.pkl", "rb"))
+vectorizer = pickle.load(open("./assets/dumps/vectorizer.pkl", "rb"))
+model = pickle.load(open("./assets/dumps/model.pkl", "rb"))
 
 # Download NLTK resources
 nltk.download('stopwords')
@@ -38,4 +38,3 @@ def predict():
     X = vectorizer.transform([transformed_message]).toarray()
     prediction = model.predict(X)[0]
     return jsonify({'prediction': int(prediction)})
-
