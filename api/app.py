@@ -28,7 +28,7 @@ def transform_msg(msg):
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+    return "Hello, World! "
 
 @app.route('/predict', methods=['POST'])
 def predict():
