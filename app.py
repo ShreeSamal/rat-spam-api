@@ -39,5 +39,3 @@ def predict():
     prediction = model.predict(X)[0]
     return jsonify({'prediction': int(prediction)})
 
-if __name__ == '__main__':
-    app.run(port=5000, debug=True)
