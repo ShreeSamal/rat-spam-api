@@ -8,8 +8,8 @@ from nltk.stem.porter import PorterStemmer
 app = Flask(__name__)
 
 # Load the vectorizer and model
-vectorizer = pickle.load(open("assets/dumps/vectorizer.pkl", "rb"))
-model = pickle.load(open("assets/dumps/model.pkl", "rb"))
+vectorizer = pickle.load(open("/assets/dumps/vectorizer.pkl", "rb"))
+model = pickle.load(open("/assets/dumps/model.pkl", "rb"))
 
 # Download NLTK resources
 nltk.download('stopwords')
@@ -25,6 +25,10 @@ def transform_msg(msg):
         if i.isalnum() and (i not in stopwords.words('english')):
             new.append(ps.stem(i))
     return " ".join(new)
+
+@app.route('/')
+def index():
+    return "Hello, World!"
 
 @app.route('/predict', methods=['POST'])
 def predict():
