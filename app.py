@@ -65,3 +65,4 @@ def predict():
         if prediction == 1:
             notifyParent(msg,to)
     return jsonify({'response': "done"})
+
