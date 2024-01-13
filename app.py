@@ -57,6 +57,7 @@ def index():
 def predict():
     data = request.get_json(force=True)
     message = data['messages']
+    print(message)
     to = str(data['to'])
     for msg in message:
         transformed_message = transform_msg(msg)
