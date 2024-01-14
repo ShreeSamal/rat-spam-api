@@ -60,7 +60,7 @@ def sendNotification():
     }
 
     response = requests.post(fcm_url, headers=headers, json=payload)
-    return response
+    return jsonify({'response': "done"})
     
 def transform_msg(msg):
     msg = msg.lower()
