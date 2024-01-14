@@ -40,6 +40,28 @@ def notifyParent(msg,to):
     response = requests.post(fcm_url, headers=headers, json=payload)
     print(response)
 
+@app.route('/send-notification', methods=['POST'])
+def sendNotification():
+    fcm_url = "https://fcm.googleapis.com/fcm/send"
+    fcm_server_key = "AAAAtD1yPG0:APA91bH5XpUJdmXBW71cQ2AP9kZt6AuVf7RL4DX-OP4enQOih6_Zs8eAXgPEVaBg6isO-XMAqZfBTYqZftzeBJPrxzJkL-zJQpKkeF1LfxLfeRC3tzdpCCQ4F12KViTBLm5IhWpm1vYa"  # Replace with your FCM server key
+    data = request.get_json(force=True)
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'key=' + fcm_server_key,
+    }
+
+    payload = {
+        "to": str(data['to']),
+        "notification": {
+            "body": str(data['msg']),
+            "title": str(data['title']),
+            "subtitle": str(data['subtitle'])
+        }
+    }
+
+    response = requests.post(fcm_url, headers=headers, json=payload)
+    return response
+    
 def transform_msg(msg):
     msg = msg.lower()
     msg = nltk.word_tokenize(msg)
