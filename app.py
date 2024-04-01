@@ -86,6 +86,9 @@ def predict():
         X = vectorizer.transform([transformed_message]).toarray()
         prediction = model.predict(X)[0]
         if prediction == 1:
+            print("spam detected")
             notifyParent(msg,to)
+        else:
+            print("not spam")
     return jsonify({'response': "done"})
 
